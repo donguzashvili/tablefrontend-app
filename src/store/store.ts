@@ -26,6 +26,7 @@ const useStore = create<storeType>((set) => ({
             toast.success(response.message)
         }catch(err){
             toast.error((err as any).response.data.message)
+            set({loading: false})
         }
     },
     addData: async (newData: dataType) => {
@@ -36,6 +37,7 @@ const useStore = create<storeType>((set) => ({
             set({data: response.data, loading: false})
         }catch(err){
             toast.error((err as any).response.data.message)
+            set({loading: false})
         }
     },
     getChartData: async () => {
@@ -46,7 +48,7 @@ const useStore = create<storeType>((set) => ({
         }catch(err){
             if((err as any).response) toast.error((err as any).response.data.message)
             else toast.error((err as any).message)
-
+            set({loading: false})
         }
     }
 
